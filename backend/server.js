@@ -33,6 +33,22 @@ app.post('/api/posts', async (req, res) => {
   }
 });
 
+// DELETE a blog post by ID
+app.delete('/api/posts/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Post.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting post:', err);
+    res.status(500).json({ error: 'Failed to delete post' });
+  }
+});
+
 // Route to get all posts
 app.get('/api/posts', async (req, res) => {
   try {
