@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Set up your PostgreSQL pool
 const pool = new Pool({
-  user: 'blog_admin',
+  user: 'postgres',
   host: 'localhost',
   database: 'BlogApp',
   password: '100602',
